@@ -12,6 +12,7 @@
                     You're logged in! as a contributor <br>
                     Create your blog post here! <br>
                 </div>
+                
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form action="">
                     <input type="text" name="" id="">

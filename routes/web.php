@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('mentalheal.landing');
+});
+
+Route::get('/bootstrap', function() {
+    return view('bootstraptemplate');
+});
+
+Route::get('/nulis', function() {
+    return view('mentalheal.posts.create');
+});
+
+Route::get('/headertailwind', function() {
+    return view('headertailwind');
+});
+
+Route::get('/adminpanel', function() {
+    return view('mentalheal.admin');
 });
 
 // Original Code
@@ -24,7 +41,9 @@ Route::get('/', function () {
 
 // Modification for tutorial
 Route::group(['middleware' => ['auth']], function() {
+    Route::resource('posts', PostController::class);
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
+    Route::get('dashboard/posts', 'App\Http\Controllers\DashboardController@posts')->name('dashboard.posts');
 });
 
 //for user
@@ -37,8 +56,7 @@ Route::group(['middleware' => ['auth', 'role:contributor']], function() {
     Route::get('/dashboard/createpost', 'App\Http\Controllers\DashboardController@createpost')->name('dashboard.createpost');
 });
 
-//Post
-use App\Http\Controllers\PostController;
-Route::resource('posts', PostController::class);
+
+
 
 require __DIR__.'/auth.php';

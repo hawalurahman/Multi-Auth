@@ -12,15 +12,25 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function home(){
+        return view('welcome');
+    }
+
+    public function count(){
+        $postCount = Post::table('posts')->count();
+        return view('mentalheal.admin', compact('posts'));
+    }
+
     public function index()
     {
         /// mengambil data terakhir dan pagination 5 list
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::latest()->paginate(10);
          
         /// mengirimkan variabel $posts ke halaman views posts/index.blade.php
         /// include dengan number index
-        return view('posts.index',compact('posts'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('mentalheal.posts.index',compact('posts'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -30,7 +40,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('mentalheal.posts.create');
     }
 
     /**
@@ -52,7 +62,7 @@ class PostController extends Controller
         Post::create($request->all());
          
         /// redirect jika sukses menyimpan data
-        return redirect()->route('posts.index')
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -66,7 +76,7 @@ class PostController extends Controller
         // dengan menggunakan resource, kita bisa memanfaatkan model sebagai parameter
         /// berdasarkan id yang dipilih
         /// href="{{ route('posts.show',$post->id) }}
-        return view('posts.show',compact('post'));
+        return view('mentalheal.posts.show',compact('post'));
     }
 
     /**
