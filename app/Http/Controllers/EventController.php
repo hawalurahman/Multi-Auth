@@ -3,32 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Post;
 
-class PostController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function home(){
-        return view('welcome');
-    }
-
-    public function count(){
-        $postCount = Post::table('posts')->count();
-        return view('mentalheal.admin', compact('posts'));
-    }
-
     public function index()
     {
         if(Auth::user()->hasRole('user')){
 
-            $posts = Post::latest()->paginate(10);
-            return view('mentalheal.feeds',compact('posts'))
+            $events = Event::latest()->paginate(10);
+            return view('mentalheal.feeds',compact('events'))
                 ->with('i', (request()->input('page', 1) - 1) * 10);
             
         } elseif(Auth::user()->hasRole('contributor')) {
@@ -45,9 +33,7 @@ class PostController extends Controller
                 ->with('i', (request()->input('page', 1) - 1) * 10);
         
         }
-        
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -58,13 +44,10 @@ class PostController extends Controller
     {
         if (Auth::user()->hasRole('user')){
 
-            return view('mentalheal.landing');
-
         } else {
             $userId = Auth::id();
             return view('mentalheal.posts.create', compact('userId'));
         }
-        
     }
 
     /**
@@ -95,7 +78,6 @@ class PostController extends Controller
             return redirect()->route('posts.index');
 
         }
-        
     }
 
     /**
@@ -104,7 +86,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Event $event)
     {
         // dengan menggunakan resource, kita bisa memanfaatkan model sebagai parameter
         /// berdasarkan id yang dipilih
@@ -118,21 +100,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
-    {   
-
-        if (Auth::user()->hasRole('user')){
-
-            return view('mentalheal.landing');
-
-        } else {
-            /// dengan menggunakan resource, kita bisa memanfaatkan model sebagai parameter
-            /// berdasarkan id yang dipilih
-            /// href="{{ route('posts.edit',$post->id) }}
-            $userId = Auth::id();
-            return view('mentalheal.posts.edit',compact('post', 'userId'));
-        }
-        
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -142,20 +112,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        /// membuat validasi untuk title dan content wajib diisi
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
-         
-        /// mengubah data berdasarkan request dan parameter yang dikirimkan
-        $post->update($request->all());
-         
-        /// setelah berhasil mengubah data
-        return redirect()->route('posts.index')
-                        ->with('success','Post updated successfully');
+        //
     }
 
     /**
@@ -164,12 +123,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        /// melakukan hapus data berdasarkan parameter yang dikirimkan
-        $post->delete();
-  
-        return redirect()->route('posts.index')
-                        ->with('success','Post deleted successfully');
+        //
     }
 }

@@ -10,14 +10,19 @@ class DashboardController extends Controller
 {
     public function index(){
         if(Auth::user()->hasRole('user')){
-            return view('UserDashboard');
+            return view('mentalheal.landing');
         } elseif(Auth::user()->hasRole('contributor')) {
-            return view('mentalheal.contributor');
+            $postCount = DB::table('posts')->count();
+            return view('mentalheal.contributor.dashboard', compact('postCount'));
         } elseif(Auth::user()->hasRole('admin')) {
             $postCount = DB::table('posts')->count();
             $userCount = DB::table('users')->count();
             return view('mentalheal.admin.dashboard', compact('postCount', 'userCount'));
         }
+    }
+
+    public function feeds(){
+        return view('mentalheal.landing');
     }
 
     public function posts(){

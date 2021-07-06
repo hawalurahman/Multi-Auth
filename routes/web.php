@@ -41,20 +41,30 @@ Route::get('/adminpanel', function() {
 
 // Modification for tutorial
 Route::group(['middleware' => ['auth']], function() {
-    Route::resource('posts', PostController::class);
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('dashboard/posts', 'App\Http\Controllers\DashboardController@posts')->name('dashboard.posts');
+    Route::get('feeds', 'App\Http\Controllers\DashboardController@feeds')->name('feeds');
 });
 
 //for user
 Route::group(['middleware' => ['auth', 'role:user']], function() {
     Route::get('/dashboard/profile', 'App\Http\Controllers\DashboardController@profile')->name('dashboard.profile');
+    Route::get('/timeline', 'App\Http\Controllers\PostController@index')->name('timeline');
 });
 
 //for contributor
 Route::group(['middleware' => ['auth', 'role:contributor']], function() {
+    
     Route::get('/dashboard/createpost', 'App\Http\Controllers\DashboardController@createpost')->name('dashboard.createpost');
 });
+
+//for admin
+Route::group(['middleware' => ['auth', 'role:admin']], function() {
+    Route::resource('posts', PostController::class);
+    Route::get('/dashboard/createpost', 'App\Http\Controllers\DashboardController@createpost')->name('dashboard.createpost');
+});
+
+Route::resource('posts', PostController::class);
 
 
 

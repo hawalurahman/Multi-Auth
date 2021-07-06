@@ -9,14 +9,12 @@
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-               
                 @unless (Auth::check())
-                <li class="nav-item"><a href="{{ route('register') }}" class="btn btn-outline-primary mx-1">Signup</a></li>
+                <li class="nav-item"><a href="{{ route('register') }}" class="btn btn-outline-primary mx-1">Signup</a>
+                </li>
                 <li class="nav-item"><a href="{{ route('login') }}" class="btn btn-primary mx-1">Login</a></li>
                 @endunless
-                
+
                 @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -24,6 +22,11 @@
                         Welcome, {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                        @unless (Auth::user()->hasRole('user'))
+                        <li><a class="dropdown-item" href="{{ route('dashboard') }}">Contributor Panel</a></li>
+                        @endunless
+
                         <li>
                             <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
                                 @csrf
