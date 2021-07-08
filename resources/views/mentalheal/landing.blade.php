@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Mentalheal</title>
 </head>
 
 <body>
@@ -98,14 +98,63 @@
                 <p class="lead">We believe that everybody deserves to understand mental health. Everybody always needs
                     somebody in their life. As a community, we aspire to help them to get the best information and
                     inspiration about mental health. You matter. And we want to help out through our community.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Join Us</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">About</button>
-                </div>
             </div>
         </div>
     </div>
     <!-- Opening -->
+
+    <!-- Features -->
+    <div class="container px-4 py-5 mt-5" id="featured-3">
+        <h2 class="pb-2 border-bottom">Here is what you can find</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+                <div class="feature-icon bg-light">
+                    <div class="text-center py-5 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="bg-primary"
+                            class="bi bi-stickies" viewBox="0 0 16 16">
+                            <path
+                                d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z" />
+                            <path
+                                d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z" />
+                        </svg>
+                    </div>
+                </div>
+                <h2>Stories and Articles</h2>
+                <p>Find the best stories and articles from our contributor. We want to help you learn and understand
+                    better about mental health.</p>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon bg-light">
+                    <div class="text-center py-5 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="bg-primary"
+                            class="bi bi-calendar-date" viewBox="0 0 16 16">
+                            <path
+                                d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
+                            <path
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                        </svg>
+                    </div>
+                </div>
+                <h2>Events</h2>
+                <p>Find events worth to join. You can empower yourself and other people. Developing yourself is part of
+                    mental health and self care.</p>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon bg-light">
+                    <div class="text-center py-5 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="bg-primary"
+                            class="bi bi-earbuds" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.432 4.432 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.548.548 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563-.43.112-.561.994-.292 1.969.269.975.836 1.675 1.266 1.563zm3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.434 4.434 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948zm.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563.43.112.561.994.292 1.969-.269.975-.836 1.675-1.266 1.563z" />
+                        </svg>
+                    </div>
+                </div>
+                <h2>Entertainments</h2>
+                <p>Listen to music and podcasts to help you calm down and relax.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Features -->
 
     <!-- Centered Hero -->
     <div class="px-4 pt-5 my-5 text-center">
@@ -115,7 +164,7 @@
                 situations? Do you need suggestion on what to do and why? Or do you simply want to help other people by
                 being prepared and understand mental health better for all?</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Join Us</button>
+                <a type="btn btn-primary" href="#formulir" class="btn btn-primary btn-lg px-4 me-sm-3">Join Us</a>
                 <button type="button" class="btn btn-outline-secondary btn-lg px-4">About</button>
             </div>
         </div>
@@ -203,82 +252,37 @@
     </div>
     <!-- Centered Hero -->
 
-    <!-- Features -->
-    <div class="container px-4 py-5 mt-5" id="featured-3">
-        <h2 class="pb-2 border-bottom">Here is what you can find</h2>
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-            <div class="feature col">
-                <div class="feature-icon bg-light">
-                    <div class="text-center py-5 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="bg-primary"
-                            class="bi bi-stickies" viewBox="0 0 16 16">
-                            <path
-                                d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z" />
-                            <path
-                                d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z" />
-                        </svg>
-                    </div>
-                </div>
-                <h2>Stories and Articles</h2>
-                <p>Find the best stories and articles from our contributor. We want to help you learn and understand
-                    better about mental health.</p>
-            </div>
-            <div class="feature col">
-                <div class="feature-icon bg-light">
-                    <div class="text-center py-5 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="bg-primary"
-                            class="bi bi-calendar-date" viewBox="0 0 16 16">
-                            <path
-                                d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
-                            <path
-                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                        </svg>
-                    </div>
-                </div>
-                <h2>Events</h2>
-                <p>Find events worth to join. You can empower yourself and other people. Developing yourself is part of
-                    mental health and self care.</p>
-            </div>
-            <div class="feature col">
-                <div class="feature-icon bg-light">
-                    <div class="text-center py-5 mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="bg-primary"
-                            class="bi bi-earbuds" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.432 4.432 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.548.548 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563-.43.112-.561.994-.292 1.969.269.975.836 1.675 1.266 1.563zm3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.434 4.434 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948zm.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563.43.112.561.994.292 1.969-.269.975-.836 1.675-1.266 1.563z" />
-                        </svg>
-                    </div>
-                </div>
-                <h2>Entertainments</h2>
-                <p>Listen to music and podcasts to help you calm down and relax.</p>
-            </div>
-        </div>
-    </div>
-    <!-- Features -->
+    
 
     @unless (Auth::check())
     <!-- Sign up form -->
-    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5" id="formulir">
         <div class="row align-items-center g-lg-5 py-5">
             <div class="col-lg-7 text-center text-lg-start">
                 <h1 class="display-4 fw-bold lh-1 mb-3">Sign up now!</h1>
-                <p class="col-lg-10 fs-4">Join our community. Learn more about mental health. Find inspiration for you and everyone else around you. </p>
+                <p class="col-lg-10 fs-4">Join our community. Learn more about mental health. Find inspiration for you
+                    and everyone else around you. </p>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 border rounded-3 bg-light">
+                <form class="p-4 p-md-5 border rounded-3 bg-light" action="{{ route('register') }}" method="POST">
+                @csrf 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+                        <label for="name">Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                        <label for="email">Email address</label>
                     </div>
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <label for="password">Password</label>
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Password">
+                        <label for="password">Password</label>
+                    </div>
+                    <input type="hidden" class="form-control" id="role_id" name="role_id" placeholder="Password" value="user">
                     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
                     <hr class="my-4">
                     <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
@@ -294,15 +298,18 @@
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white">Be our contributor</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="fs-5 mb-4">Help us write quality content and bring impact to the world. Join as our contributor so you can help spread your ideas, stories, and insight about mental health.</p>
+                <p class="fs-5 mb-4">Help us write quality content and bring impact to the world. Join as our
+                    contributor so you can help spread your ideas, stories, and insight about mental health.</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Join</button>
-                    <button type="button" class="btn btn-outline-light btn-lg px-4">Learn more</button>
+                    <a type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" href="{{ route('register') }}">Join</a>
+                    <a type="button" class="btn btn-outline-light btn-lg px-4" href="{{ url('join2contribute') }}">Learn more</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Closing -->
+
+    @include('bootstrap_components.footer')
 
     <!-- Optional JavaScript; choose one of the two! -->
 

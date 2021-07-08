@@ -12,7 +12,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
-                        <textarea class="ckeditor form-control" name="content" id="content"></textarea>
+                        <textarea class="ckeditor form-control" name="content" id="content" style="height: 800px"></textarea>
                     </div>
                     <div class="mb-3">
                         <input type="hidden" class="form-control" id="id_user" name="id_user" value='{{ $userId }}'>

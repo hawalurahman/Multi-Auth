@@ -10,14 +10,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Mentalheal</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     @include('bootstrap_components.navbar')
 
     <div class="container">
         <div class="row align-item-start">
+            <!-- sidebar -->
             <div class="col-3">
                 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
                     <a href="/"
@@ -30,7 +31,7 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active" aria-current="page">
+                            <a href="{{ route('dashboard') }}" class="nav-link link-dark active">
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#home" />
                                 </svg>
@@ -45,11 +46,58 @@
                                 Post
                             </a>
                         </li>
-
+                        <li>
+                            <a href="{{ route('events.index') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Event
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('orders') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('transactions') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Transactions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('users') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Users
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('contributors') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Contributors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admins') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Admins
+                            </a>
+                        </li>
                     </ul>
-
                 </div>
             </div>
+            <!-- sidebar -->
 
             <!-- bagian kanan -->
             <div class="col">
@@ -72,7 +120,7 @@
                         </div>
                         <div class="feature col">
                             <div class="feature-icon bg-primary h-50 text-center rounded">
-                                <h1 class="pt-5 text-white">{{ $userCount }}</h1>
+                                <h1 class="pt-5 text-white">{{ $eventCount }}</h1>
                             </div>
                             <h2>Events</h2>
                             <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with
@@ -105,6 +153,8 @@
         </div>
 
     </div>
+
+    @include('bootstrap_components.footer')
 
 
 

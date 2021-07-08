@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Event;
 
 class EventController extends Controller
 {
@@ -11,26 +13,26 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         if(Auth::user()->hasRole('user')){
 
-            $events = Event::latest()->paginate(10);
-            return view('mentalheal.feeds',compact('events'))
-                ->with('i', (request()->input('page', 1) - 1) * 10);
+            $events = Event::latest()->get();
+            return view('mentalheal.events.index',compact('events'));
             
         } elseif(Auth::user()->hasRole('contributor')) {
             
             $userId = Auth::id();    
-            $posts = Post::where('id_user', $userId)->paginate(10);
-            return view('mentalheal.posts.index',compact('posts', 'userId'))
-                ->with('i', (request()->input('page', 1) - 1) * 10);
+            $events = Event::where('id_user', $userId)->get();
+            $i = 0;
+            return view('mentalheal.events.index',compact('events', 'userId', 'i'));
 
         } elseif(Auth::user()->hasRole('admin')) {
 
-            $posts = Post::latest()->paginate(10);
-            return view('mentalheal.posts.index',compact('posts'))
-                ->with('i', (request()->input('page', 1) - 1) * 10);
+            $events = Event::latest()->get();
+            $i = 0;
+            return view('mentalheal.events.index',compact('events', 'i'));
         
         }
     }
@@ -46,7 +48,7 @@ class EventController extends Controller
 
         } else {
             $userId = Auth::id();
-            return view('mentalheal.posts.create', compact('userId'));
+            return view('mentalheal.events.create', compact('userId'));
         }
     }
 
@@ -63,19 +65,29 @@ class EventController extends Controller
             return view('mentalheal.landing');
 
         } else {
-            
+
             /// membuat validasi untuk title dan content wajib diisi
+            
             $request->validate([
                 'title' => 'required',
                 'content' => 'required',
             ]);
+            $response = cloudinary()->upload($request->file('poster')->getRealPath())->getSecurePath();
             
             /// insert setiap request dari form ke dalam database via model
             /// jika menggunakan metode ini, maka nama field dan nama form harus sama
-            Post::create($request->all());
+            Event::create([
+                'title' => $request->title,
+                'content' => $request->content,
+                'id_user' => $request->id_user,
+                'date' => $request->date,
+                'end_date' => $request->end_date,
+                'price' => $request->price,
+                'poster' => $response
+            ]);
             
             /// redirect jika sukses menyimpan data
-            return redirect()->route('posts.index');
+            return redirect()->route('events.index');
 
         }
     }
@@ -91,7 +103,7 @@ class EventController extends Controller
         // dengan menggunakan resource, kita bisa memanfaatkan model sebagai parameter
         /// berdasarkan id yang dipilih
         /// href="{{ route('posts.show',$post->id) }}
-        return view('mentalheal.posts.show',compact('post'));
+        return view('mentalheal.events.show',compact('event'));
     }
 
     /**
@@ -100,9 +112,19 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        //
+        if (Auth::user()->hasRole('user')){
+
+            return view('mentalheal.landing');
+
+        } else {
+            /// dengan menggunakan resource, kita bisa memanfaatkan model sebagai parameter
+            /// berdasarkan id yang dipilih
+            /// href="{{ route('posts.edit',$post->id) }}
+            $userId = Auth::id();
+            return view('mentalheal.events.edit',compact('event', 'userId'));
+        }
     }
 
     /**
@@ -112,9 +134,20 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $event)
     {
-        //
+        /// membuat validasi untuk title dan content wajib diisi
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+         
+        /// mengubah data berdasarkan request dan parameter yang dikirimkan
+        $event->update($request->all());
+         
+        /// setelah berhasil mengubah data
+        return redirect()->route('events.index')
+                        ->with('success','Post updated successfully');
     }
 
     /**
@@ -123,8 +156,53 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        //
+        $event->delete();
+  
+        return back();
     }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editposter(Request $request, Event $event)
+    {
+        $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+        $userId = Auth::id();
+        $upload = Event::where('id', $request->id)->update(['poster' => $response]);
+        return back();
+    }
+
+    public function showcase(){
+        $events = Event::latest()->get();
+            return view('mentalheal.events.feeds',compact('events'));
+    }
+
+    public function show1(int $eventId)
+    {   
+        $event = Event::find($eventId);
+        // dengan menggunakan resource, kita bisa memanfaatkan model sebagai parameter
+        /// berdasarkan id yang dipilih
+        /// href="{{ route('posts.show',$post->id) }}
+        return view('mentalheal.events.show',compact('event'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

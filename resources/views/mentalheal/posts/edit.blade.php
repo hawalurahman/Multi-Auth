@@ -21,13 +21,16 @@
                             id="content">{{ $post->content }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <input type="hidden" class="form-control" id="id_user" name="id_user" value='{{ $post->id_user }}'>
+                        <input type="hidden" class="form-control" id="id_user" name="id_user"
+                            value='{{ $post->id_user }}'>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
+
                 </div>
             </form>
-
+            test
+            <a href="#" class="btn btn-light">Back</a>
         </div>
 
     </div>

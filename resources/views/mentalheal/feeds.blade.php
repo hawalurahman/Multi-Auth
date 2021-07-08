@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Mentalheal</title>
 </head>
 
 <body>
@@ -19,17 +19,24 @@
 
     <div class="container">
         <div class="row justify-content-center">
+            <div class="col-8 mb-5">
+                <h1 class="display-1 text-center">Articles</h1>
+            </div>
             <div class="col-8">
                 @foreach ($posts as $post)
-                <h2>{{ $post->title }}</h2>
-                <p>{!! $post->content !!}</p>
+                <a href="{{ route('posts.show',$post->id) }}" class="display-4 text-decoration-none">{{ $post->title }}</a>
+                <p class="text-secondary mb-3 fst-italic">published by {{ $post->user->name }}</p>
+                <p class="fs-1">{!! $post->content !!}</p>
                 <br>
+                <p class="fst-italic text-secondary">published on {{ $post->created_at }}</p>
+                
+                <hr class="my-5">
                 @endforeach
             </div>
         </div>
     </div>
 
-
+    @include('bootstrap_components.footer')
 
 
 

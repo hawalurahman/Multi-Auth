@@ -13,4 +13,9 @@ class Post extends Model
         'title', 'content', 'id_user'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
 }

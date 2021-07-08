@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\User;
+use DB;
 
 class PostController extends Controller
 {
@@ -23,26 +25,32 @@ class PostController extends Controller
         return view('mentalheal.admin', compact('posts'));
     }
 
+    public function showallpost(){
+        $writers = Post::find(1);
+            $posts = Post::latest()->get();            
+            return view('mentalheal.posts.feeds',compact('posts','writers'));
+    }
+
     public function index()
     {
         if(Auth::user()->hasRole('user')){
-
-            $posts = Post::latest()->paginate(10);
-            return view('mentalheal.feeds',compact('posts'))
-                ->with('i', (request()->input('page', 1) - 1) * 10);
+            $writers = Post::find(1);
+            $posts = Post::latest()->get(); 
+            $i = 0;           
+            return view('mentalheal.feeds',compact('posts','writers', 'i'));
             
         } elseif(Auth::user()->hasRole('contributor')) {
             
-            $userId = Auth::id();    
-            $posts = Post::where('id_user', $userId)->paginate(10);
-            return view('mentalheal.posts.index',compact('posts', 'userId'))
-                ->with('i', (request()->input('page', 1) - 1) * 10);
+            $userId = Auth::id(); 
+            $i = 0;   
+            $posts = Post::where('id_user', $userId)->get();
+            return view('mentalheal.posts.index',compact('posts', 'userId', 'i'));
 
         } elseif(Auth::user()->hasRole('admin')) {
 
-            $posts = Post::latest()->paginate(10);
-            return view('mentalheal.posts.index',compact('posts'))
-                ->with('i', (request()->input('page', 1) - 1) * 10);
+            $posts = Post::latest()->get();
+            $i = 0;
+            return view('mentalheal.posts.index',compact('posts', 'i'));
         
         }
         
@@ -90,6 +98,7 @@ class PostController extends Controller
             /// insert setiap request dari form ke dalam database via model
             /// jika menggunakan metode ini, maka nama field dan nama form harus sama
             Post::create($request->all());
+            // $post->attachMedia($file); 
             
             /// redirect jika sukses menyimpan data
             return redirect()->route('posts.index');
@@ -171,5 +180,14 @@ class PostController extends Controller
   
         return redirect()->route('posts.index')
                         ->with('success','Post deleted successfully');
+    }
+
+    public function show1(int $postId)
+    {   
+        $post = Post::find($postId);
+        // dengan menggunakan resource, kita bisa memanfaatkan model sebagai parameter
+        /// berdasarkan id yang dipilih
+        /// href="{{ route('posts.show',$post->id) }}
+        return view('mentalheal.posts.show',compact('post'));
     }
 }

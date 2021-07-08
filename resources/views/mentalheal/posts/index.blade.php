@@ -10,15 +10,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Mentalheal</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     @include('bootstrap_components.navbar')
 
     <div class="container">
         <div class="row align-item-start">
-            <div class="col-3">
+
+<!-- sidebar -->
+<div class="col-3">
                 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
                     <a href="/"
                         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -38,18 +40,67 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link active" aria-current="page">
+                            <a href="{{ route('posts.index') }}" class="nav-link link-dark active">
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#speedometer2" />
                                 </svg>
                                 Post
                             </a>
                         </li>
-
+                        <li>
+                            <a href="{{ route('events.index') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Event
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('orders') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Orders
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('transactions') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Transactions
+                            </a>
+                        </li>
+                        @role('admin')
+                        <li>
+                            <a href="{{ route('users') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Users
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('contributors') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Contributors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admins') }}" class="nav-link link-dark">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2" />
+                                </svg>
+                                Admins
+                            </a>
+                        </li>
+                        @endrole
                     </ul>
-
                 </div>
             </div>
+            <!-- sidebar -->
 
             <!-- bagian kanan -->
             <div class="col">
@@ -69,12 +120,18 @@
                     <tr>
                         <th width="20px" class="text-center">No</th>
                         <th>Title</th>
+                        @role('admin')
+                        <th>Published by</th>
+                        @endrole
                         <th width="280px" class="text-center">Action</th>
                     </tr>
                     @foreach ($posts as $post)
                     <tr>
                         <td class="text-center">{{ ++$i }}</td>
                         <td>{{ $post->title }}</td>
+                        @role('admin')
+                        <td>{{ $post->user->name }}</td>
+                        @endrole
                         <td class="text-center">
                             <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
 
@@ -97,6 +154,8 @@
         </div>
 
     </div>
+
+    @include('bootstrap_components.footer')
 
 
 

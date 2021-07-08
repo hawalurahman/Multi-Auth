@@ -15,7 +15,12 @@
                 <li class="nav-item"><a href="{{ route('login') }}" class="btn btn-primary mx-1">Login</a></li>
                 @endunless
 
+                
+
                 @auth
+                <li class="nav-item"><a href="{{ route('articles') }}" class="nav-link link-dark">Articles</a></li>
+                <li class="nav-item"><a href="{{ route('joinevents') }}" class="nav-link link-dark">Events</a></li>
+                <li class="nav-item"><a href="{{ route('events.history') }}" class="nav-link link-dark">Transaction</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,8 +40,7 @@
                             </form>
                         </li>
 
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="{{ route('user.profile', Auth::user()->id) }}">Profile</a></li>
                     </ul>
                 </li>
                 @endauth
