@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Event;
+use App\Models\EventTransaction;
 
 class UserController extends Controller
 {
@@ -21,11 +23,12 @@ class UserController extends Controller
 
         $target = User::findOrFail($user);
         /// melakukan hapus data berdasarkan parameter yang dikirimkan
+        // dd($target->transaction()->getParent()->events()->transaction()->get());
+        $target->transaction()->delete();
         $target->posts()->delete();
         $target->events()->delete();
-        $target->transaction()->delete();
         $target->delete();
-        
+
   
         return back();
     }
